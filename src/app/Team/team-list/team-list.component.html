@@ -1,0 +1,37 @@
+<div class="container" *ngIf="currentUser; else loggedOut" width="100%">
+  <div  class="panel panel-primary" >
+    <div  class="panel-heading" >
+      <h2>Список команд:</h2>
+
+      <div><h2></h2></div>
+    </div>
+    <div class="panel-body main" width="100%">
+      <table class="table table-hover " >
+        <thead>
+        <tr>
+          <th>Специализация:</th>
+          <th>Максимальное количество человек:</th>
+          <th>  </th>
+          <th>  </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let team of teams">
+          <td>{{team.specialization}}</td>
+          <td>{{team.maxCountOfPeople}}</td>
+          <td><button (click)="updateTeam(team.teamId)" class="btn btn-info btn-detail" style="margin-left: 10px">Update</button>
+          </td>
+          <td><button (click)="deleteTeam(team.teamId)" class="btn btn-danger btn-delete">Delete</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button (click)="addTeam()" class="btn btn-danger btn-add">Add</button>
+
+  </div>
+</div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

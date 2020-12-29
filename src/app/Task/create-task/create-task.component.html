@@ -1,0 +1,63 @@
+<div class="container">
+
+  <div class="card">
+    <div class="card-body">
+<form [formGroup]="form" (ngSubmit)="onSubmit()"  >
+  <h2>Создание новой задачи:</h2>
+  <div [hidden]="submitted" style="text-align: center; width:100%">
+
+    <div class="form-field">
+      <div class="form-field__control-container">
+        <div class="form-group">
+          <label><b>Команда: </b></label>
+        </div>
+        <div>
+          <select  class="form-control" formControlName="project" (change)="onSelectProject($event)">
+            <option value="" disabled>Выберите команду</option>
+            <option *ngFor="let project of projects| async" [value]="project.projectId"> {{project.projectName}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <div class="form-field__control-container">
+        <div class="form-group">
+          <label><b>employee: </b></label>
+        </div>
+        <div>
+          <select  class="form-control" formControlName="employee" (change)="onSelectEmployee($event)">
+            <option value="" disabled>Выберите employee</option>
+            <option *ngFor="let employee of employees" [value]="employee.employeeId"> {{employee.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label><b>taskName: </b></label>
+      <input type="text" class="form-control"  formControlName="taskName" >
+    </div>
+    <div class="form-group">
+      <label><b>Дедлайн: </b></label>
+      <input type="text" class="form-control"  formControlName="deadline" >
+    </div>
+    <div class="form-group">
+      <label><b>Приоритет: </b></label>
+      <input type="text"  class="form-control"  formControlName="priority" >
+    </div>
+    <div class="form-group">
+      <label><b>description: </b></label>
+      <input type="text"  class="form-control"  formControlName="description" >
+    </div>
+    <div><button type="submit"  class="btn btn-success">Submit</button></div>
+    <div><button (click)="gotoList()"  class="btn btn-primary">Back</button></div>
+
+  </div>
+  <div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+  </div>
+</form>
+
+</div>
+</div>
+</div>

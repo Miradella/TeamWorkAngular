@@ -1,0 +1,45 @@
+<div class="container" *ngIf="currentUser; else loggedOut">
+  <div  class="panel panel-primary">
+    <div  class="panel-heading">
+      <h2>Project List</h2>
+    </div>
+
+    <div><h2></h2></div>
+    <div class="panel-body main">
+      <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+          <th>Название</th>
+          <th>Команда</th>
+          <th>Начало</th>
+          <th>Дедлайн</th>
+          <th>Заказчик</th>
+          <th>Приоритет</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let emp of project">
+          <td>{{emp.projectName}}</td>
+          <td>Команда № {{emp.team.teamId}}</td>
+          <td>{{emp.projectstart}}</td>
+          <td>{{emp.deadline}}</td>
+          <td>{{emp.customer.name}}</td>
+          <td>{{emp.priority}}</td>
+          <td><button (click)="projectDetails(emp.projectId)" class="btn btn-info btn-detail" style="margin-left: 10px">Update</button>
+          </td>
+          <td><button (click)="deleteProject(emp.projectId)" class="btn btn-danger btn-delete">Delete</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button (click)="addProject()" class="btn btn-danger btn-add">Add</button>
+
+  </div>
+</div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>
